@@ -3,20 +3,20 @@ services:
   - docker
  
 before_install:
-  - docker build -t younes-amine/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t younesamine/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true younes-amine/react-test npm test
+  - docker run -e CI=true younesamine/react-test npm test
 
 after_success:
-  - docker build -t younes-amine/multi-client ./client
-  - docker build -t younes-amine/multi-nginx ./nginx
-  - docker build -t younes-amine/multi-server ./server
-  - docker build -t younes-amine/multi-worker ./worker
+  - docker build -t younesamine/multi-client ./client
+  - docker build -t younesamine/multi-nginx ./nginx
+  - docker build -t younesamine/multi-server ./server
+  - docker build -t younesamine/multi-worker ./worker
   # login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images to docker hub
-  - docker push younes-amine/multi-client
-  - docker push younes-amine/multi-nginx
-  - docker push younes-amine/multi-server
-  - docker push younes-amine/multi-worker
+  - docker push younesamine/multi-client
+  - docker push younesamine/multi-nginx
+  - docker push younesamine/multi-server
+  - docker push younesamine/multi-worker
